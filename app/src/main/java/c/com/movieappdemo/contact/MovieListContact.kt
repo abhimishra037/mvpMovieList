@@ -1,5 +1,6 @@
 package c.com.movieappdemo.contact
 
+import c.com.movieappdemo.database.AppDataBase
 import c.com.movieappdemo.model.Movies
 
 interface MovieListContact {
@@ -11,7 +12,10 @@ interface MovieListContact {
             fun onFailure(t:Throwable)
         }
 
-        fun getMoviesList(onFinishedListener: OnFinishedListener)
+        fun getMoviesList(
+            onFinishedListener: OnFinishedListener,
+            appDataBase: AppDataBase?
+        )
     }
 
     interface View {

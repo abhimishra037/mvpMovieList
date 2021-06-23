@@ -1,12 +1,14 @@
 package c.com.movieappdemo.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName
 
 
 
-
+@Entity (tableName = "movieList")
 class Movies {
 
     @SerializedName("poster_path")
@@ -31,6 +33,7 @@ class Movies {
 
     @SerializedName("id")
     @Expose
+    @PrimaryKey
     private var id: Int? = null
 
     @SerializedName("original_title")

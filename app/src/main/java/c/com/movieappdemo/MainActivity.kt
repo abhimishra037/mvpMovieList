@@ -7,6 +7,7 @@ import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import c.com.movieappdemo.contact.MovieListContact
+import c.com.movieappdemo.database.AppDataBase
 import c.com.movieappdemo.model.Movies
 import c.com.movieappdemo.presnter.MoviePresenter
 import c.com.view.MovieListAdapter
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity(), MovieListContact.View {
     private lateinit var movieListArray: ArrayList<Movies>
     private lateinit var progressBar: ProgressBar
     private lateinit var adapter: MovieListAdapter
+    private var db: AppDataBase? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +33,9 @@ class MainActivity : AppCompatActivity(), MovieListContact.View {
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.setHasFixedSize(true)
 
-        val movieListPresenter = MoviePresenter(this)
+        db = AppDataBase.getAppDataBase(this)
+
+        val movieListPresenter = MoviePresenter(this,db)
         movieListPresenter.requestDataFromServer()
 
     }
